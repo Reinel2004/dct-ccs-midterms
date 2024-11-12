@@ -78,30 +78,72 @@ function displayErrors($errors) {
 
 function renderErrorsToView($error) {
    
+    if (empty($error)) {
+        return null;
+    }
+    return "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                $error
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+
 }
 
 
 function validateStudentData($student_data) {
    
+    $errors = [];
+    if (empty($student_data['student_id'])) {
+        $errors[] = "Student ID is required.";
+    }
+    if (empty($student_data['first_name'])) {
+        $errors[] = "First Name is required.";
+    }
+
+    if (empty($student_data['last_name'])) {
+        $errors[] = "Last Name is required.";
+    }
+
+    return $errors;
+
 }
 
 function checkDuplicateStudentData($student_data) {
-   
+    if (!empty($_SESSION['student_data'])) {
+        foreach ($_SESSION['student_data'] as $existing_student) {
+            if ($existing_student['student_id'] === $student_data['student_id']) {
+                return $existing_student; 
+            }
+        }
+    }
+    return null; 
+
 }
 
 function getSelectedStudentIndex($student_id) {
-   
+    if (!empty($_SESSION['student_data'])) {
+        foreach ($_SESSION['student_data'] as $index => $student) {
+            if ($student['student_id'] === $student_id) {
+                return $index; 
+            }
+        }
+    }
+    return null;
+
 }
 
 
 function getSelectedStudentData($index) {
-   
+    if (isset($_SESSION['student_data'][$index])) {
+        return $_SESSION['student_data'][$index];
+    }
+    return false;
+
 }
 
 
 function getBaseURL() {
-   
-}
+    return 'http://' . $_SERVER['HTTP_HOST'] . '/midterms';
+}   
 
 
 function validateSubjectData($subject_data){
