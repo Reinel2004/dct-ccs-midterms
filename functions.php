@@ -146,26 +146,56 @@ function getBaseURL() {
 }   
 
 
-function validateSubjectData($subject_data){
-  
-
+// Validates subject data to ensure fields are not empty
+function validateSubjectData($subject_data) {
+    $errors = [];
+    if (empty($subject_data['subject_code'])) {
+        $errors[] = "Subject Code is required.";
+    }
+    if (empty($subject_data['subject_name'])) {
+        $errors[] = "Subject Name is required.";
+    }
+    return $errors;
 }
 
-function checkDuplicateSubjectData($subject_data){
-    
+
+function checkDuplicateSubjectData($subject_data) {
+    if (!empty($_SESSION['subject_data'])) {
+        foreach ($_SESSION['subject_data'] as $existing_subject) {
+            if ($existing_subject['subject_code'] === $subject_data['subject_code']) {
+                return $existing_subject;
+            }
+        }
+    }
+    return null;
 }
 
-function getSelectedSubjectIndex($subject_code){
 
+function getSelectedSubjectIndex($subject_code) {
+    if (!empty($_SESSION['subject_data'])) {
+        foreach ($_SESSION['subject_data'] as $index => $subject) {
+            if ($subject['subject_code'] === $subject_code) {
+                return $index;
+            }
+        }
+    }
+    return null;
 }
 
-function getSelectedSubjectData($index){
 
+function getSelectedSubjectData($index) {
+    if (isset($_SESSION['subject_data'][$index])) {
+        return $_SESSION['subject_data'][$index];
+    }
+    return false;
 }
 
-function validateAttachedSubject($subject_data){
-
+function validateAttachedSubject($subject_data) {
+    $errors = [];
+    if (empty($subject_data['subject_code'])) {
+        $errors[] = "Subject Code is required for attachment.";
+    }
+    return $errors;
 }
-
 
 ?>
