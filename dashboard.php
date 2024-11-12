@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body">
                     <p>This section allows you to add a new subject in the system. Click the button below to proceed with the adding process.</p>
-                    <a href="" class="btn btn-primary">Add New Subject</a>
+                    <a href="subject/add.php" class="btn btn-primary">Add New Subject</a>
 
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <p>This section allows you to register a new student in the system. Click the button below to proceed with the registration process.</p>
 
-                    <a href="" class="btn btn-primary">Register New Student</a>
+                    <a href="student/register.php" class="btn btn-primary">Register</a>
                 </div>
             </div>
         </div>
