@@ -20,15 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = validateSubjectData($subject_data);
 
+    
+    $duplicate_index = getSelectedSubjectIndex($subject_data['subject_code']);
+    $duplicate_subject = getSelectedSubjectData($subject_data['subject_name']);
+    if ($duplicate_index !== null && $duplicate_subject !== null) {
+        $errors[] = "Duplicate Subject";
+    }
+
     if (empty($errors)) {
-        $duplicate_index = getSelectedSubjectIndex($subject_data['subject_code']);
-        if ($duplicate_index !== null) {
-            $errors[] = "Subject Code " . htmlspecialchars($subject_data['subject_code']) . " already exists.";
-        } else {
-            $_SESSION['subject_data'][] = $subject_data;
-            header("Location: register.php");
-            exit;
-        }
+        $_SESSION['subject_data'][] = $subject_data;
+        header("Location: add.php");
+        exit;
     }
 }
 ?>
@@ -57,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     <?php endif; ?>
 
-    <form action="register.php" method="post">
+    <form method="post">
         <div class="form-group">
             <label for="subject_code">Subject Code</label>
-            <input type="text" class="form-control" id="subject_code" name="subject_code" placeholder="Enter Subject Code" required>
+            <input type="text" class="form-control" id="subject_code" name="subject_code" placeholder="Enter Subject Code">
         </div>
         <div class="form-group">
             <label for="subject_name">Subject Name</label>
-            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Enter Subject Name" required>
+            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Enter Subject Name">
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Add Subject</button>
