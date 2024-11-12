@@ -4,7 +4,7 @@
     <br>
     <div class="container d-flex justify-content-between align-items-center col-md-7">
         <h4>Welcome to the System:</h4>
-        <button onclick="window.location.href=''" class="btn btn-danger">Logout</button>
+        <button onclick="window.location.href='logout.php'" class="btn btn-danger">Logout</button>
     </div>
     <br><br>
     <div class="row justify-content-center">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="card-body">
                     <p>This section allows you to register a new student in the system. Click the button below to proceed with the registration process.</p>
-                    
+
                     <a href="" class="btn btn-primary">Register New Student</a>
                 </div>
             </div>
