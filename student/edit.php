@@ -7,7 +7,7 @@ guard();
 
 $errors = [];
 $studentToEdit = null;
-$studentIndex = null; // Define globally
+$studentIndex = null;
 
 if (isset($_REQUEST['student_id'])) {
     $student_id = $_REQUEST['student_id'];
