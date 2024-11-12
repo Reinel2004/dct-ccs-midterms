@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="mb-3">
                 <label for="txtEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+                <input type="text" class="form-control" id="txtEmail" name="txtEmail">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
