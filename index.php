@@ -1,6 +1,6 @@
 
 
-
+<?php include('header.php'); ?>
 <form method="post">
     <br>
     
@@ -20,3 +20,4 @@
         </div>
     </div>
 </form>
+<?php include('footer.php'); ?>
