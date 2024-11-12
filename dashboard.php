@@ -1,5 +1,25 @@
 <?php
-    include('header.php');
+    session_start();
+    $pageTitle = "Dashboard";
+   
+    if (empty($_SESSION['email'])) {
+        header("Location: index.php");
+        exit;
+    }
+    
+  
+    header("Cache-Control: no-store, no-cache, must-revalidate"); 
+    header("Cache-Control: post-check=0, pre-check=0", false); 
+    header("Pragma: no-cache");
+    
+    
+    include 'header.php'; 
+    include 'functions.php'; 
+    
+    
+    checkUserSessionIsActive();  
+    
+    guard();  
 ?>
     <br>
     <div class="container d-flex justify-content-between align-items-center col-md-7">
