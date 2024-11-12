@@ -69,9 +69,9 @@ function guard() {
 function displayErrors($errors) {
     $output = "<ul>";
     foreach ($errors as $error) {
-        $output . = "<li>" . htmlspecialchars($error) . "</li>";
+        $output .= "<li>" . htmlspecialchars($error) . "</li>";
     }
-    $output . = "</ul>";
+    $output .= "</ul>";
     return $output;
 }
 
