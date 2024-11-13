@@ -29,7 +29,7 @@ function validateLoginCredentials($email, $password) {
         }
 
         if (!$emailExists) {
-            $errors[] = "Invalid Email.";
+            $errors[] = "Invalid email or password.";
         }
     }
 
