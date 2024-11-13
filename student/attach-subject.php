@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../dashboard.php">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="register.php">Register Student</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Attach Subject</li>
+            <li class="breadcrumb-item active" aria-current="page">Attach Subject to Student</li>
         </ol>
     </nav>
     <hr>
@@ -82,9 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <li><strong>Last Name:</strong> <?= htmlspecialchars($studentToAttach['last_name']) ?></li>
             </ul>
         </div>
-    <?php else: ?>
-        <p class="text-danger">Student not found.</p>
-        <a href="register.php" class="btn btn-primary">Back to Student List</a>
     <?php endif; ?>
 
     <hr>
