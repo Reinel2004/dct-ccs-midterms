@@ -1,13 +1,28 @@
 <?php
 session_start();
 $pageTitle = "Attach Subject to Student";
+
 include '../header.php';
 include '../functions.php';
+
+if (empty($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
+
+header("Cache-Control: no-store, no-cache, must-revalidate"); 
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");
+
 
 $studentToAttach = null;
 $errors = [];
 
-// Retrieve selected student information based on student_id
+checkUserSessionIsActive();  
+    
+guard(); 
+
 if (isset($_GET['student_id'])) {
     $student_id = $_GET['student_id'];
     if (!empty($_SESSION['student_data'])) {
@@ -20,7 +35,6 @@ if (isset($_GET['student_id'])) {
     }
 }
 
-// Attach subjects to the student when form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['subject_codes']) && !empty($_POST['subject_codes'])) {
         $subject_codes = $_POST['subject_codes'];
@@ -78,8 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h3>Selected Student Information</h3>
             <ul>
                 <li><strong>Student ID:</strong> <?= htmlspecialchars($studentToAttach['student_id']) ?></li>
-                <li><strong>First Name:</strong> <?= htmlspecialchars($studentToAttach['first_name']) ?></li>
-                <li><strong>Last Name:</strong> <?= htmlspecialchars($studentToAttach['last_name']) ?></li>
+                <li><strong>Name:</strong> <?= htmlspecialchars($studentToAttach['first_name']) ?> <?= htmlspecialchars($studentToAttach['last_name']) ?></li>
             </ul>
         </div>
     <?php endif; ?>
@@ -87,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <hr>
 
     <form method="post">
-        <h3>Select Subjects to Attach</h3>
         <?php 
         if (!empty($_SESSION['subject_data'])): 
             $attached_subjects = $_SESSION['attached_subjects'][$student_id] ?? [];
@@ -96,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             });
 
             if (!empty($available_subjects)): 
+                echo '  <h3>Select Subjects to Attach</h3>';
                 foreach ($available_subjects as $subject): ?>
                     <div>
                         <input 
@@ -107,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 <?php endforeach; ?>
                 <br>
-                <button type="submit" class="btn btn-primary">Attach Selected Subjects</button>
+                <button type="submit" class="btn btn-primary">Attach Subjects</button>
             <?php else: ?>
                 <p>No subjects available to attach.</p>
             <?php endif;
