@@ -1,13 +1,25 @@
 <?php
 session_start();
+$pageTitle = "Delete Subject";
 include '../header.php';
 include '../functions.php';
+
+if (empty($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
+header("Cache-Control: no-store, no-cache, must-revalidate"); 
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");
+
+checkUserSessionIsActive();  
+guard(); 
+
 
 if (isset($_GET['subject_code'])) {
     $subject_code = $_GET['subject_code'];
 
-    
-    // Locate the subject to delete
     $subjectToDelete = null;
     if (!empty($_SESSION['subject_data'])) {
         foreach ($_SESSION['subject_data'] as $subject) {
