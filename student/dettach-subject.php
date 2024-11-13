@@ -4,6 +4,21 @@ $pageTitle = "Dettach Subject from Student";
 include '../header.php';
 include '../functions.php';
 
+if (empty($_SESSION['email'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
+
+header("Cache-Control: no-store, no-cache, must-revalidate"); 
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");
+
+checkUserSessionIsActive();  
+guard(); 
+
+
+
 $studentToDelete = null;
 $subjectToDetach = null;
 
