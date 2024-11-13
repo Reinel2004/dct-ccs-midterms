@@ -30,7 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['student_id'])) {
         'last_name' => $_POST['last_name']
     ];
 
-    $errors = []; 
+    if (empty($updatedData['first_name'])) {
+        $errors[] = "First Name is equired";
+    }
+
+    if (empty($updatedData['last_name'])) {
+        $errors[] = "Last Name is equired";
+    }
+
 
     if (empty($errors)) {
         $_SESSION['student_data'][$studentIndex] = $updatedData;
