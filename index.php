@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: dashboard.php");
             exit;
         } else {
-            // Updated notification message
             $notification = "<li>Invalid username or password.</li>";
         }
     } else {
@@ -39,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php include('header.php'); ?>
 
     <br>
-    <div class="container" style="width: 500px; background-color: whitesmoke; padding: 20px; border-radius:20px;">
+    <div class="container" style="width: 600px; background-color: whitesmoke; padding: 20px; border-radius:20px;">
         <?php if (!empty($notification)): ?>
-            <div class="col-md-4 mb-3">
+            <div class="mb-3">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>System Errors</strong>
                     <?php echo $notification; ?>
