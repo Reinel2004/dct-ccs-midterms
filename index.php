@@ -7,7 +7,6 @@ if (!empty($_SESSION['email'])) {
     exit;
 }
 
-
 include 'functions.php'; 
 include 'header.php';
 
@@ -28,11 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: dashboard.php");
             exit;
         } else {
-          
-            $notification = "<li>Invalid Email.</li>";
+            // Updated notification message
+            $notification = "<li>Invalid username or password.</li>";
         }
     } else {
-       
         $notification = displayErrors($errors);
     }
 }
@@ -50,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
-        <?php endif; ?>
+        <?php endif; ?> 
         <form method="post">
             <div class="text-center">
                 <h1>Login</h1> <br><hr>
