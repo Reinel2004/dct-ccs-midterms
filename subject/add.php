@@ -21,10 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = validateSubjectData($subject_data);
 
     
-    $duplicate_index = getSelectedSubjectIndex($subject_data['subject_code']);
-    $duplicate_subject = getSelectedSubjectData($subject_data['subject_name']);
-    if ($duplicate_index !== null && $duplicate_subject !== null) {
-        $errors[] = "Duplicate Subject";
+    foreach ($_SESSION['subject_data'] as $existingSubject) {
+        if ($existingSubject['subject_code'] === $subject_data['subject_code']) {
+            $errors[] = "Duplicate Subject";
+            break;
+        }
+        if ($existingSubject['subject_name'] === $subject_data['subject_name']) {
+            $errors[] = "Duplicate Subject";
+            break;
+        }
     }
 
     if (empty($errors)) {
