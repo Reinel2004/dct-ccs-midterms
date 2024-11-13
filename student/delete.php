@@ -1,5 +1,6 @@
 <?php
 session_start();
+$pageTitle = "Delete Student Record";
 include '../header.php';
 include '../functions.php';
 
