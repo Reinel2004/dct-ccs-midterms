@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <tr>
                                 <td><?= htmlspecialchars($subject['subject_code']); ?></td>
                                 <td><?= htmlspecialchars($subject['subject_name']); ?></td>
-                                <td><a href="detach-subject.php?student_id=<?= urlencode($student_id) ?>&subject_code=<?= urlencode($attached_code) ?>" class="btn btn-danger btn-sm">Detach Subject</a></td>
+                                <td><a href="dettach-subject.php?student_id=<?= urlencode($student_id) ?>&subject_code=<?= urlencode($attached_code) ?>" class="btn btn-danger btn-sm">Detach Subject</a></td>
                             </tr>
                         <?php endif; ?>
                     <?php endforeach; ?>
