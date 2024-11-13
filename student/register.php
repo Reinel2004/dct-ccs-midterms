@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($errors)) {
         $duplicate_index = getSelectedStudentIndex($student_data['student_id']);
         if ($duplicate_index !== null) {
-            $errors[] = "Student ID " . htmlspecialchars($student_data['student_id']) . " already exists.";
+            $errors[] = "Duplicate Student ID";
         } else {
             $_SESSION['student_data'][] = $student_data;
             header("Location: register.php");
