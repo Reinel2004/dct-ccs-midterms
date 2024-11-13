@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pageTitle = "Register Subject";
+$pageTitle = "Add Subject";
 include '../header.php';
 include '../functions.php';
 guard();
