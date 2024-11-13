@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session_start(); 
     $pageTitle = "Dashboard";
    
     if (empty($_SESSION['email'])) {
@@ -7,7 +7,7 @@
         exit;
     }
     
-  
+   
     header("Cache-Control: no-store, no-cache, must-revalidate"); 
     header("Cache-Control: post-check=0, pre-check=0", false); 
     header("Pragma: no-cache");
@@ -16,14 +16,13 @@
     include 'header.php'; 
     include 'functions.php'; 
     
-    
-    checkUserSessionIsActive();  
-    
-    guard();  
+   
+    checkUserSessionIsActive(); 
+    guard(); 
 ?>
     <br>
     <div class="container d-flex justify-content-between align-items-center col-md-7">
-        <h4>Welcome to the System:</h4>
+        <h4>Welcome to the System: <?php echo $_SESSION['email']; ?></h4>
         <button onclick="window.location.href='logout.php'" class="btn btn-danger">Logout</button>
     </div>
     <br><br>
