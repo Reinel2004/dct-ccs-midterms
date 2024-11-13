@@ -6,6 +6,7 @@ include '../functions.php';
 if (isset($_GET['subject_code'])) {
     $subject_code = $_GET['subject_code'];
 
+    
     // Locate the subject to delete
     $subjectToDelete = null;
     if (!empty($_SESSION['subject_data'])) {
@@ -57,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subject_code'])) {
                 </ul>
                 <form method="post">
                     <input type="hidden" name="subject_code" value="<?= htmlspecialchars($subjectToDelete['subject_code']) ?>">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='add.php';">Cancel</button>
                     <button type="submit" class="btn btn-primary">Delete Subject Record</button>
                 </form>
             <?php endif; ?>
